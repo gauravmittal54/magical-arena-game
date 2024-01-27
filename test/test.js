@@ -1,4 +1,4 @@
-const { Player, GameController } = require('./main'); // Update the path accordingly
+const { Player, GameController } = require('../main');
 
 // Test Case 1: Player Initialization
 const playerA = new Player('Player A', 100, 5, 10);
