@@ -1,4 +1,5 @@
-const { Player, GameController } = require('../main');
+const Player = require('../models/player');
+const GameController = require('../controller/gameController')
 
 // Test Case 1: Player Initialization
 const playerA = new Player('Player A', 100, 5, 10);
@@ -20,7 +21,9 @@ console.log('Attack:', playerB.attack);
 console.log('\n');
 
 // Test Case 2: GameController Initialization
-const gameController = new GameController(playerA, playerB);
+const gameController = new GameController();
+const players = gameController.initializePlayersTest(playerA, playerB);
+gameController.players = players;
 
 console.log('Test Case 2: GameController Initialization');
 console.log('-----------------------------------------');
@@ -35,7 +38,7 @@ gameController.startGame();
 
 console.log('Test Case 3: Playing a Few Rounds');
 console.log('--------------------------------');
-// Additional log statements based on your game logic
+// Additional log statements
 console.log('Attacker:', gameController.attacker.playerName);
 console.log('Defender:', gameController.defender.playerName);
 console.log('Round:', gameController.round);
