@@ -65,7 +65,15 @@ class GameController {
         return new Promise((resolve) => {
             this.rl.question(`Enter ${attribute} for Player ${playerNumber}: `, (answer) => {
                 if (attribute === 'name') {
-                    resolve(answer.trim());
+                    const isValidName = /^[a-zA-Z]+$/.test(answer.trim());
+                    
+                    if (isValidName) {
+                        resolve(answer.trim());
+                    } else {
+                        console.log(`Invalid input. Please enter a valid name for Player ${playerNumber}.`);
+                        this.getPlayerInput(playerNumber, attribute).then(resolve);
+                    }
+                } else {
                     const numericValue = parseInt(answer, 10);
                     if (!isNaN(numericValue)) {
                         resolve(numericValue);
@@ -77,6 +85,7 @@ class GameController {
             });
         });
     }
+    
 
     initializePlayersTest(playerA, playerB) {
         this.players = [playerA, playerB];
