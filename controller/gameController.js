@@ -1,4 +1,3 @@
-// gameController.js - Controller
 const readline = require('readline');
 const Player = require('../models/player');
 
@@ -66,8 +65,7 @@ class GameController {
         return new Promise((resolve) => {
             this.rl.question(`Enter ${attribute} for Player ${playerNumber}: `, (answer) => {
                 if (attribute === 'name') {
-                    resolve(answer.trim()); // Trim any leading/trailing spaces for names
-                } else {
+                    resolve(answer.trim());
                     const numericValue = parseInt(answer, 10);
                     if (!isNaN(numericValue)) {
                         resolve(numericValue);
@@ -78,6 +76,11 @@ class GameController {
                 }
             });
         });
+    }
+
+    initializePlayersTest(playerA, playerB) {
+        this.players = [playerA, playerB];
+        return this.players;
     }
 
     async initializePlayers() {
@@ -93,6 +96,9 @@ class GameController {
 
         return [new Player(playerNameA, healthA, strengthA, attackA), new Player(playerNameB, healthB, strengthB, attackB)];
     }
+
+    
+
 }
 
 module.exports = GameController;
